@@ -58,3 +58,9 @@ Le Quéré et al. (2022) shared a list of news domains at https://github.com/sTe
 
 Fisher et al. (2022) shared a list of news domains at https://osf.io/hwuxf.
 Their list was derived from multiple sources, including Yin (2018).
+
+## Horne
+
+- [horne.csv](./horne.csv)
+
+Horne et al. (2022) shared a list of local news outlets at https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GFE66K.
