@@ -1,0 +1,26 @@
+import os
+
+###############################################################################
+###############################################################################
+# Meta information
+###############################################################################
+DATA_ROOT = "../data"
+RAW_DATA_ROOT = os.path.join(DATA_ROOT, "raw_data")
+INTERMEDIATE_DATA_ROOT = os.path.join(DATA_ROOT, "intermediate_files")
+OUTPUT_DATA_ROOT = os.path.join(DATA_ROOT, "output")
+
+###############################################################################
+###############################################################################
+###############################################################################
+# Workflow
+###############################################################################
+
+###############################################################################
+# Cleaning
+MBFC_DATA_FILE = os.path.join(RAW_DATA_ROOT, "mbfc_ratings.csv")
+MBFC_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "mbfc_cleaned.csv")
+
+rule clean_mbfc:
+    input: MBFC_DATA_FILE
+    output: MBFC_CLEANED_DATA_FILE
+    shell: "python clean_mbfc.py {input} {output}"
