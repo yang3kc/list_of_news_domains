@@ -45,3 +45,9 @@ Since not all the domains are news domains, Robertson further provide a `news` l
 - [hohenberg.csv](./hohenberg.csv)
 
 Hohenberg et al. (2021) shared a list of news domains at https://github.com/ercexpo/us-news-domains.
+
+## Le Quéré
+
+- [le_querre.csv](./le_querre.csv)
+
+Le Quéré et al. (2022) shared a list of news domains at https://github.com/sTechLab/local-news-dataset.
