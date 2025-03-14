@@ -64,3 +64,10 @@ Their list was derived from multiple sources, including Yin (2018).
 - [horne.csv](./horne.csv)
 
 Horne et al. (2022) shared a list of local news outlets at https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/GFE66K.
+
+## ABYZ
+
+- [abyz.csv](./abyz.csv)
+
+abyznewslinks.com provides a list of newspapers and news media in the U.S., classifying them as either local or national.
+We obtained the data from its website.
