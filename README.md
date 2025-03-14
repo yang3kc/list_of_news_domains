@@ -1,3 +1,3 @@
 # Introduction
 
-The goal of this project is to compile a list of news domains.
+The goal of this project is to compile a list of news domains for research purposes.
