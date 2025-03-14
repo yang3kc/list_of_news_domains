@@ -51,3 +51,10 @@ Hohenberg et al. (2021) shared a list of news domains at https://github.com/erce
 - [le_querre.csv](./le_querre.csv)
 
 Le Quéré et al. (2022) shared a list of news domains at https://github.com/sTechLab/local-news-dataset.
+
+## Fisher
+
+- [fisher.csv](./fisher.csv)
+
+Fisher et al. (2022) shared a list of news domains at https://osf.io/hwuxf.
+Their list was derived from multiple sources, including Yin (2018).
