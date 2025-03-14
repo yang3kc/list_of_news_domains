@@ -39,3 +39,9 @@ Specifically, Robertson et al. (2018) collected the data from the following sour
 4. [Bakshy et al. (2015)](https://www.science.org/doi/10.1126/science.aaa1160)
 
 Since not all the domains are news domains, Robertson further provide a `news` label based on the definition of Bakshy et al. (2015), Grinberg et al. (2019), and Yin (2018).
+
+## Hohenberg
+
+- [hohenberg.csv](./hohenberg.csv)
+
+Hohenberg et al. (2021) shared a list of news domains at https://github.com/ercexpo/us-news-domains.
