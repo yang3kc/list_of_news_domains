@@ -1,24 +1,6 @@
 from urllib.parse import urlparse
 import tldextract
 
-list_of_domains_to_remove = set(
-    [
-        "youtube.com",
-        "twitter.com",
-        "instagram.com",
-        "tiktok.com",
-        "facebook.com",
-        "linkedin.com",
-        "pinterest.com",
-        "reddit.com",
-        "tumblr.com",
-        "flickr.com",
-        "vimeo.com",
-        "wikipedia.org",
-        "wikileaks.org",
-    ]
-)
-
 
 def has_path(url):
     """
