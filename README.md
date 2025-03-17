@@ -4,7 +4,9 @@ The goal of this project is to compile a list of news domains from existing list
 
 # TL;DR
 
-The final list: [data/output/news_domains.csv](data/output/news_domains.csv)
+Check out the [release](https://github.com/yang3kc/list_of_news_domains/releases) to download the last version of the list.
+
+Or access it at: [data/output/news_domains.csv](data/output/news_domains.csv)
 
 # Data sources
 
