@@ -125,7 +125,15 @@ rule gen_unique_data:
 TRANCO_LIST = os.path.join(RAW_DATA_ROOT, "tranco_list_20240101.csv.gz")
 DOMAIN_WITH_RANK_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "domain_with_rank.csv")
 
+GOV_EDU_DOMAIN_LIST = os.path.join(INTERMEDIATE_DATA_ROOT, "gov_edu_domain_list.csv")
+
 rule merge_with_tranco:
     input: COMBINED_UNIQUE_DATA_FILE, TRANCO_LIST
     output: DOMAIN_WITH_RANK_FILE
     shell: "python merge_with_tranco.py {input} {output}"
+
+rule extract_gov_edu_domains:
+    input: COMBINED_UNIQUE_DATA_FILE
+    params: "gov_edu"
+    output: GOV_EDU_DOMAIN_LIST
+    shell: "python extract_domains_by_suffix.py {input} {params} {output}"
