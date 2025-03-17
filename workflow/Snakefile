@@ -77,3 +77,11 @@ rule clean_horne:
     input: HORNE_DATA_FILE
     output: HORNE_CLEANED_DATA_FILE
     shell: "python clean_horne.py {input} {output}"
+
+ABYZ_DATA_FILE = os.path.join(RAW_DATA_ROOT, "abyz.csv")
+ABYZ_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "abyz_cleaned.csv")
+
+rule clean_abyz:
+    input: ABYZ_DATA_FILE
+    output: ABYZ_CLEANED_DATA_FILE
+    shell: "python clean_abyz.py {input} {output}"
