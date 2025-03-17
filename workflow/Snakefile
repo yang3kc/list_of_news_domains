@@ -61,3 +61,11 @@ rule clean_le_quere:
     input: LE_QUERE_DATA_FILE
     output: LE_QUERE_CLEANED_DATA_FILE
     shell: "python clean_le_quere.py {input} {output}"
+
+FISHER_DATA_FILE = os.path.join(RAW_DATA_ROOT, "fisher.csv")
+FISHER_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "fisher_cleaned.csv")
+
+rule clean_fisher:
+    input: FISHER_DATA_FILE
+    output: FISHER_CLEANED_DATA_FILE
+    shell: "python clean_fisher.py {input} {output}"
