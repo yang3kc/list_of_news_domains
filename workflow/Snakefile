@@ -72,8 +72,9 @@ FISHER_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "fisher_cleaned.
 
 rule clean_fisher:
     input: FISHER_DATA_FILE
+    params: "fisher"
     output: FISHER_CLEANED_DATA_FILE
-    shell: "python clean_fisher.py {input} {output}"
+    shell: "python clean_fisher.py {input} {params} {output}"
 
 HORNE_DATA_FILE = os.path.join(RAW_DATA_ROOT, "horne.csv")
 HORNE_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "horne_cleaned.csv")
