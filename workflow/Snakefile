@@ -137,3 +137,16 @@ rule extract_gov_edu_domains:
     params: "gov_edu"
     output: GOV_EDU_DOMAIN_LIST
     shell: "python extract_domains_by_suffix.py {input} {params} {output}"
+
+
+# The file below was manually annotated based on the list DOMAIN_WITH_RANK_FILE
+DOMAIN_TO_EXCLUDE_FILE = os.path.join(RAW_DATA_ROOT, "domain_to_exclude.csv")
+# The file below was manually annotated based on the list GOV_EDU_DOMAIN_LIST
+GOV_EDU_DOMAIN_LIST_TO_EXCLUDE = os.path.join(RAW_DATA_ROOT, "gov_edu_domains_to_exclude.csv")
+
+NEWS_DOMAINS_FILE = os.path.join(OUTPUT_DATA_ROOT, "news_domains.csv")
+
+rule exclude_domains:
+    input: COMBINED_UNIQUE_DATA_FILE, DOMAIN_TO_EXCLUDE_FILE, GOV_EDU_DOMAIN_LIST_TO_EXCLUDE
+    output: NEWS_DOMAINS_FILE
+    shell: "python filter_domains.py {input} {output}"
