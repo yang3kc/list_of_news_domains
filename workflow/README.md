@@ -33,3 +33,14 @@ Therefore, we remove them from the final list.
 
 Note that some newspapers operated by the universities share the same top domains as the official domains, but with different subdomains (e.g., collegian.psu.edu).
 These newspapers are considered as news domains and are included in the final list.
+
+### Other non-news domains
+
+We remove other non-news domains that are not included in the final list.
+They are:
+
+- search engines (e.g., google.com)
+- social media domains (e.g., facebook.com, twitter.com)
+- website builders (e.g., wordpress.com, wix.com)
+- blogs (e.g., medium.com)
+- etc.
