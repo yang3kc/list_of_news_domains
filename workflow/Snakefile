@@ -22,8 +22,9 @@ NEWSGUARD_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "newsguard_cl
 
 rule clean_newsguard:
     input: NEWSGUARD_DATA_FILE
+    params: "newsguard"
     output: NEWSGUARD_CLEANED_DATA_FILE
-    shell: "python clean_newsguard.py {input} {output}"
+    shell: "python clean_newsguard.py {input} {params} {output}"
 
 
 MBFC_DATA_FILE = os.path.join(RAW_DATA_ROOT, "mbfc_ratings.csv")
