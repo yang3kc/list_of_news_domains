@@ -71,3 +71,32 @@ Horne et al. (2022) shared a list of local news outlets at https://dataverse.har
 
 abyznewslinks.com provides a list of newspapers and news media in the U.S., classifying them as either local or national.
 We obtained the data from its website.
+
+## Exclusion list
+
+After cleaning and combining all the list above, we manually identified some domains that should not be included in the final list.
+
+### Government and education domains
+
+- [gov_edu_domains_to_exclude.csv](./gov_edu_domains_to_exclude.csv)
+
+This list includes domains that end with `.edu` or `.gov`.
+We manually annotate the list and remove the ones that are not news domains.
+Specifically, we remove all government domains and official university domains.
+
+Note that some newspapers operated by the universities share the same top domains as the official domains, but with different subdomains (e.g., collegian.psu.edu).
+These newspapers are considered as news domains and are included in the final list.
+
+### Non-news domains
+
+- [domain_to_exclude.csv](./domain_to_exclude.csv)
+
+We merged the combined list with the [Tranco list](https://tranco-list.eu/), which provides the rank of the domains based on their popularity.
+We focus on the most popular domains and remove those that shouldn't not be included in the final list.
+They are:
+
+- search engines (e.g., google.com)
+- social media domains (e.g., facebook.com, twitter.com)
+- website builders (e.g., wordpress.com, wix.com)
+- blogs (e.g., medium.com)
+- etc.
