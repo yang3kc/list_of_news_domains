@@ -47,4 +47,7 @@ print(f"{len(mbfc_df)} rows after removing government and education domains.")
 mbfc_df.drop_duplicates(inplace=True)
 print(f"{len(mbfc_df)} rows after dropping duplicates.")
 
+mbfc_df = mbfc_df[~mbfc_df["domain"].isin(utils.list_of_domains_to_remove)][["domain"]]
+print(f"{len(mbfc_df)} rows after removing non-news domains.")
+
 mbfc_df.to_csv(output_file, index=False)

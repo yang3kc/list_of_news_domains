@@ -39,4 +39,9 @@ print(f"{len(newsguard_df)} rows after removing government and education domains
 newsguard_df.drop_duplicates(inplace=True)
 print(f"{len(newsguard_df)} rows after dropping duplicates.")
 
-newsguard_df[["domain"]].to_csv(output_file, index=False)
+newsguard_df = newsguard_df[
+    ~newsguard_df["domain"].isin(utils.list_of_domains_to_remove)
+][["domain"]]
+print(f"{len(newsguard_df)} rows after removing non-news domains.")
+
+newsguard_df.to_csv(output_file, index=False)
