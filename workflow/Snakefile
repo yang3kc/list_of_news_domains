@@ -52,3 +52,12 @@ rule clean_hohenberg:
     input: HOHENBERG_DATA_FILE
     output: HOHENBERG_CLEANED_DATA_FILE
     shell: "python clean_hohenberg.py {input} {output}"
+
+
+LE_QUERE_DATA_FILE = os.path.join(RAW_DATA_ROOT, "le_quere.csv")
+LE_QUERE_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "le_quere_cleaned.csv")
+
+rule clean_le_quere:
+    input: LE_QUERE_DATA_FILE
+    output: LE_QUERE_CLEANED_DATA_FILE
+    shell: "python clean_le_quere.py {input} {output}"
