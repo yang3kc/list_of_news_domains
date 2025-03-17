@@ -32,8 +32,9 @@ MBFC_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "mbfc_cleaned.csv"
 
 rule clean_mbfc:
     input: MBFC_DATA_FILE
+    params: "mbfc"
     output: MBFC_CLEANED_DATA_FILE
-    shell: "python clean_mbfc.py {input} {output}"
+    shell: "python clean_mbfc.py {input} {params} {output}"
 
 
 ROBERTSON_DOMAINS_FILE = os.path.join(RAW_DATA_ROOT, "robertson_domains.tsv")

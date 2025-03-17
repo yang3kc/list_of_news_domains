@@ -2,16 +2,17 @@
 Purpose:
 Clean and standardize domain names from Media Bias/Fact Check (MBFC) data.
 Processes raw MBFC data to extract and normalize domain names by removing paths,
-converting to lowercase, and standardizing formatting.
+converting to lowercase, and removing duplicates.
 
 Inputs:
 - CSV file containing MBFC source data with columns "source" and "domain"
+- String identifier for the dataset
 
 Outputs:
-- CSV file containing cleaned domain names in a single "domain" column
+- CSV file containing cleaned domain names with "domain" and "dataset" columns
 
 Example:
-python clean_mbfc.py data/raw/mbfc.csv data/processed/mbfc_cleaned.csv
+python clean_mbfc.py data/raw/mbfc.csv mbfc data/processed/mbfc_cleaned.csv
 """
 
 import pandas as pd
@@ -19,6 +20,7 @@ import sys
 import utils
 
 input_file = sys.argv[1]
+dataset = sys.argv[2]
 output_file = sys.argv[-1]
 
 mbfc_df = pd.read_csv(input_file, usecols=["source", "domain"])
@@ -39,4 +41,5 @@ mbfc_df["domain"] = mbfc_df.domain.str.replace("/", "")
 mbfc_df.drop_duplicates(inplace=True)
 print(f"{len(mbfc_df)} rows after dropping duplicates.")
 
+mbfc_df["dataset"] = dataset
 mbfc_df.to_csv(output_file, index=False)
