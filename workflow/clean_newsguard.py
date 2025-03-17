@@ -16,12 +16,9 @@ python clean_newsguard.py data/raw/newsguard.csv data/processed/newsguard_cleane
 
 import pandas as pd
 import sys
-import utils
 
 input_file = sys.argv[1]
 output_file = sys.argv[-1]
-
-domains_to_remove = set(["gov", "edu"])
 
 newsguard_df = pd.read_csv(input_file, usecols=["Domain"])
 print(f"Load {newsguard_df.shape[0]} rows from {input_file}.")
@@ -32,16 +29,7 @@ newsguard_df["domain"] = newsguard_df.domain.str.lower()
 newsguard_df.dropna(inplace=True)
 print(f"{len(newsguard_df)} rows after dropping missing values.")
 
-newsguard_df["suffix"] = newsguard_df.domain.apply(utils.extract_suffix)
-newsguard_df = newsguard_df[~newsguard_df["suffix"].isin(domains_to_remove)][["domain"]]
-print(f"{len(newsguard_df)} rows after removing government and education domains.")
-
 newsguard_df.drop_duplicates(inplace=True)
 print(f"{len(newsguard_df)} rows after dropping duplicates.")
-
-newsguard_df = newsguard_df[
-    ~newsguard_df["domain"].isin(utils.list_of_domains_to_remove)
-][["domain"]]
-print(f"{len(newsguard_df)} rows after removing non-news domains.")
 
 newsguard_df.to_csv(output_file, index=False)
