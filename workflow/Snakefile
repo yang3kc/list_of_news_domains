@@ -17,6 +17,14 @@ OUTPUT_DATA_ROOT = os.path.join(DATA_ROOT, "output")
 
 ###############################################################################
 # Cleaning
+NEWSGUARD_DATA_FILE = os.path.join(RAW_DATA_ROOT, "newsguard_20200519.csv")
+NEWSGUARD_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "newsguard_cleaned.csv")
+
+rule clean_newsguard:
+    input: NEWSGUARD_DATA_FILE
+    output: NEWSGUARD_CLEANED_DATA_FILE
+    shell: "python clean_newsguard.py {input} {output}"
+
 MBFC_DATA_FILE = os.path.join(RAW_DATA_ROOT, "mbfc_ratings.csv")
 MBFC_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "mbfc_cleaned.csv")
 
