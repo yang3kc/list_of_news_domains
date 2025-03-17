@@ -1,16 +1,15 @@
-# Project template
+# Introduction
 
-A simple template for research project repos.
+The goal of this project is to compile a list of news domains for research purposes.
 
-The template contains the following directories:
+# TL;DR
 
-1. `data` for raw & derived datasets
-1. `libs` for libraries for the project
-1. `notebooks` for (timestamped) experiment notebooks
-1. `workflow` for workflow files and scripts
-1. `.gitignore` for temporary and binary files to be ignored by git (LaTeX, Python, Jupyter, data files, etc.)
+The final list: [data/output/news_domains.csv](data/output/news_domains.csv)
 
-# Logistics
+# Data sources
 
-- **Project management**: We will use GitHub issues to track and assign tasks.
-- **Committing new code**: Push to `main` branch is disabled. To commit new code, please create a new [branch](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-branches), then create a new [Pull Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests). Merging to `main` branch requires at least one reviewer signs it off.
+See [data/raw_data](data/raw_data) for the data sources.
+
+# Workflow
+
+See [workflow](workflow) for details of processing steps.

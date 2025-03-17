@@ -1,0 +1,54 @@
+---
+description: Follow this structured guideline for consistent and informative documentation
+globs: *.py
+alwaysApply: false
+---
+# Introduction
+
+Python docstrings are crucial for code readability and maintainability. Follow this structured guideline for consistent and informative documentation:
+
+## Formatting
+Use triple double quotes (`"""Docstring"""`).
+
+## Sections
+For complex functions or classes, include structured sections:
+
+### Functions & Classes
+
+For Python functions, include the following sections:
+
+- **Purpose:**
+- Briefly explain what the function or class does.
+- Include motivation or context if it's not self-explanatory.
+
+- **Parameters:**
+  Clearly document parameters with their expected type, purpose, and any constraints.
+
+- **Returns:**
+  Explain what the function returns, including type and meaning.
+
+- **Raises:**
+  List any exceptions the function explicitly raises.
+
+- **Examples:**
+  Provide a short example demonstrating typical use.
+
+### Scripts
+For Python scrips, include the following sections:
+
+- **Purpose:**
+- Briefly explain what the script does.
+- Include motivation or context if it's not self-explanatory.
+
+- **Inputs:**
+  Clearly document the input of the script and associated requirements and constraints.
+
+- **Outputs:**
+  Explain the outputs of the script, including the format and the content in it.
+  
+- **Example:**
+  Provide an example showing how to excute the script in command line with exmaple inputs and outputs.
+
+## Additional Tips
+- Update docstrings alongside code changes.
+- Use consistent formatting throughout the project.

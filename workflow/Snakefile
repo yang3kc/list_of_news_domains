@@ -1,0 +1,152 @@
+import os
+
+###############################################################################
+###############################################################################
+# Meta information
+###############################################################################
+DATA_ROOT = "../data"
+RAW_DATA_ROOT = os.path.join(DATA_ROOT, "raw_data")
+INTERMEDIATE_DATA_ROOT = os.path.join(DATA_ROOT, "intermediate_files")
+OUTPUT_DATA_ROOT = os.path.join(DATA_ROOT, "output")
+
+###############################################################################
+###############################################################################
+###############################################################################
+# Workflow
+###############################################################################
+
+###############################################################################
+# Cleaning
+NEWSGUARD_DATA_FILE = os.path.join(RAW_DATA_ROOT, "newsguard_20200519.csv")
+NEWSGUARD_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "newsguard_cleaned.csv")
+
+rule clean_newsguard:
+    input: NEWSGUARD_DATA_FILE
+    params: "newsguard"
+    output: NEWSGUARD_CLEANED_DATA_FILE
+    shell: "python clean_newsguard.py {input} {params} {output}"
+
+
+MBFC_DATA_FILE = os.path.join(RAW_DATA_ROOT, "mbfc_ratings.csv")
+MBFC_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "mbfc_cleaned.csv")
+
+rule clean_mbfc:
+    input: MBFC_DATA_FILE
+    params: "mbfc"
+    output: MBFC_CLEANED_DATA_FILE
+    shell: "python clean_mbfc.py {input} {params} {output}"
+
+
+ROBERTSON_DOMAINS_FILE = os.path.join(RAW_DATA_ROOT, "robertson_domains.tsv")
+ROBERTSON_CLEANED_DOMAINS_FILE = os.path.join(
+    INTERMEDIATE_DATA_ROOT, "robertson_cleaned.csv"
+)
+
+rule clean_robertson:
+    input: ROBERTSON_DOMAINS_FILE
+    params: "robertson"
+    output: ROBERTSON_CLEANED_DOMAINS_FILE
+    shell: "python clean_robertson.py {input} {params} {output}"
+
+HOHENBERG_DATA_FILE = os.path.join(RAW_DATA_ROOT, "hohenberg.csv")
+HOHENBERG_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "hohenberg_cleaned.csv")
+
+rule clean_hohenberg:
+    input: HOHENBERG_DATA_FILE
+    params: "hohenberg"
+    output: HOHENBERG_CLEANED_DATA_FILE
+    shell: "python clean_hohenberg.py {input} {params} {output}"
+
+
+LE_QUERE_DATA_FILE = os.path.join(RAW_DATA_ROOT, "le_quere.csv")
+LE_QUERE_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "le_quere_cleaned.csv")
+
+rule clean_le_quere:
+    input: LE_QUERE_DATA_FILE
+    params: "le_quere"
+    output: LE_QUERE_CLEANED_DATA_FILE
+    shell: "python clean_le_quere.py {input} {params} {output}"
+
+FISHER_DATA_FILE = os.path.join(RAW_DATA_ROOT, "fisher.csv")
+FISHER_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "fisher_cleaned.csv")
+
+rule clean_fisher:
+    input: FISHER_DATA_FILE
+    params: "fisher"
+    output: FISHER_CLEANED_DATA_FILE
+    shell: "python clean_fisher.py {input} {params} {output}"
+
+HORNE_DATA_FILE = os.path.join(RAW_DATA_ROOT, "horne.csv")
+HORNE_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "horne_cleaned.csv")
+
+rule clean_horne:
+    input: HORNE_DATA_FILE
+    params: "horne"
+    output: HORNE_CLEANED_DATA_FILE
+    shell: "python clean_horne.py {input} {params} {output}"
+
+ABYZ_DATA_FILE = os.path.join(RAW_DATA_ROOT, "abyz.csv")
+ABYZ_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "abyz_cleaned.csv")
+
+rule clean_abyz:
+    input: ABYZ_DATA_FILE
+    params: "abyz"
+    output: ABYZ_CLEANED_DATA_FILE
+    shell: "python clean_abyz.py {input} {params} {output}"
+
+
+###############################################################################
+# Aggregation
+CLEANED_COMBINED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "cleaned_combined.csv")
+COMBINED_UNIQUE_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "combined_unique.csv")
+
+rule combine_cleaned_data:
+    input:
+        NEWSGUARD_CLEANED_DATA_FILE,
+        MBFC_CLEANED_DATA_FILE,
+        ROBERTSON_CLEANED_DOMAINS_FILE,
+        HOHENBERG_CLEANED_DATA_FILE,
+        LE_QUERE_CLEANED_DATA_FILE,
+        FISHER_CLEANED_DATA_FILE,
+        HORNE_CLEANED_DATA_FILE,
+        ABYZ_CLEANED_DATA_FILE
+    output: CLEANED_COMBINED_DATA_FILE
+    shell: "python concat_csv.py {input} {output}"
+
+
+rule gen_unique_data:
+    input: CLEANED_COMBINED_DATA_FILE
+    output: COMBINED_UNIQUE_DATA_FILE
+    shell: "python gen_unique_data.py {input} {output}"
+
+
+###############################################################################
+# Further filtering
+TRANCO_LIST = os.path.join(RAW_DATA_ROOT, "tranco_list_20240101.csv.gz")
+DOMAIN_WITH_RANK_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "domain_with_rank.csv")
+
+GOV_EDU_DOMAIN_LIST = os.path.join(INTERMEDIATE_DATA_ROOT, "gov_edu_domain_list.csv")
+
+rule merge_with_tranco:
+    input: COMBINED_UNIQUE_DATA_FILE, TRANCO_LIST
+    output: DOMAIN_WITH_RANK_FILE
+    shell: "python merge_with_tranco.py {input} {output}"
+
+rule extract_gov_edu_domains:
+    input: COMBINED_UNIQUE_DATA_FILE
+    params: "gov_edu"
+    output: GOV_EDU_DOMAIN_LIST
+    shell: "python extract_domains_by_suffix.py {input} {params} {output}"
+
+
+# The file below was manually annotated based on the list DOMAIN_WITH_RANK_FILE
+DOMAIN_TO_EXCLUDE_FILE = os.path.join(RAW_DATA_ROOT, "domain_to_exclude.csv")
+# The file below was manually annotated based on the list GOV_EDU_DOMAIN_LIST
+GOV_EDU_DOMAIN_LIST_TO_EXCLUDE = os.path.join(RAW_DATA_ROOT, "gov_edu_domains_to_exclude.csv")
+
+NEWS_DOMAINS_FILE = os.path.join(OUTPUT_DATA_ROOT, "news_domains.csv")
+
+rule exclude_domains:
+    input: COMBINED_UNIQUE_DATA_FILE, DOMAIN_TO_EXCLUDE_FILE, GOV_EDU_DOMAIN_LIST_TO_EXCLUDE
+    output: NEWS_DOMAINS_FILE
+    shell: "python filter_domains.py {input} {output}"

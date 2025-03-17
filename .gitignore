@@ -1,3 +1,13 @@
+# MacOS
+.DS_Store
+
+# Snakemake
+.snakemake/
+
+data/intermediate_files/
+
+.ipynb_checkpoints/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
