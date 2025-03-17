@@ -6,18 +6,22 @@ converting to lowercase, and removing duplicates.
 
 Inputs:
 - CSV file containing Le Quere source data with "WebsiteUrl" column
+- String identifier for the dataset
+- Output file path
 
 Outputs:
-- CSV file containing cleaned domain names in a single "domain" column
+- CSV file containing cleaned domain names with "domain" and "dataset" columns
+  identifying the source dataset
 
 Example:
-python clean_le_quere.py data/raw/le_quere.csv data/processed/le_quere_cleaned.csv
+python clean_le_quere.py data/raw/le_quere.csv le_quere data/processed/le_quere_cleaned.csv
 """
 
 import pandas as pd
 import sys
 
 input_file = sys.argv[1]
+dataset = sys.argv[2]
 output_file = sys.argv[-1]
 
 le_quere_df = pd.read_csv(input_file, usecols=["WebsiteUrl"])
@@ -35,4 +39,5 @@ print(f"{len(le_quere_df)} rows after removing URLs with paths.")
 le_quere_df.drop_duplicates(inplace=True)
 print(f"{len(le_quere_df)} rows after dropping duplicates.")
 
+le_quere_df["dataset"] = dataset
 le_quere_df.to_csv(output_file, index=False)
