@@ -53,8 +53,9 @@ HOHENBERG_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "hohenberg_cl
 
 rule clean_hohenberg:
     input: HOHENBERG_DATA_FILE
+    params: "hohenberg"
     output: HOHENBERG_CLEANED_DATA_FILE
-    shell: "python clean_hohenberg.py {input} {output}"
+    shell: "python clean_hohenberg.py {input} {params} {output}"
 
 
 LE_QUERE_DATA_FILE = os.path.join(RAW_DATA_ROOT, "le_quere.csv")
