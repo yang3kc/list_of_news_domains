@@ -23,6 +23,7 @@ list_of_domains_to_remove = set(
 def has_path(url):
     """
     Check if the URL has a path component.
+    NOTE: only works for URLs; does not work for domain names
 
     Returns:
         bool: True if URL has a non-empty path, False otherwise
