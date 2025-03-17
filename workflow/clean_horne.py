@@ -6,18 +6,22 @@ converting to lowercase, and removing duplicates.
 
 Inputs:
 - CSV file containing Horne source data with "sourcedomain_id" column
+- String identifier for the dataset
+- Output file path
 
 Outputs:
-- CSV file containing cleaned domain names in a single "domain" column
+- CSV file containing cleaned domain names with "domain" and "dataset" columns
+  identifying the source dataset
 
 Example:
-python clean_horne.py data/raw/horne.csv data/processed/horne_cleaned.csv
+python clean_horne.py data/raw/horne.csv horne data/processed/horne_cleaned.csv
 """
 
 import pandas as pd
 import sys
 
 input_file = sys.argv[1]
+dataset = sys.argv[2]
 output_file = sys.argv[-1]
 
 horne_raw_df = pd.read_csv(input_file, usecols=["sourcedomain_id"])
@@ -34,4 +38,5 @@ horne_df["domain"] = horne_df.domain.str.lower()
 horne_df.drop_duplicates(inplace=True)
 print(f"{len(horne_df)} rows after dropping duplicates.")
 
+horne_df["dataset"] = dataset
 horne_df.to_csv(output_file, index=False)

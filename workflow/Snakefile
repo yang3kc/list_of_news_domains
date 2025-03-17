@@ -81,8 +81,9 @@ HORNE_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "horne_cleaned.cs
 
 rule clean_horne:
     input: HORNE_DATA_FILE
+    params: "horne"
     output: HORNE_CLEANED_DATA_FILE
-    shell: "python clean_horne.py {input} {output}"
+    shell: "python clean_horne.py {input} {params} {output}"
 
 ABYZ_DATA_FILE = os.path.join(RAW_DATA_ROOT, "abyz.csv")
 ABYZ_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "abyz_cleaned.csv")
