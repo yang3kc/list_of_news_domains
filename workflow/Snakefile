@@ -90,8 +90,9 @@ ABYZ_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "abyz_cleaned.csv"
 
 rule clean_abyz:
     input: ABYZ_DATA_FILE
+    params: "abyz"
     output: ABYZ_CLEANED_DATA_FILE
-    shell: "python clean_abyz.py {input} {output}"
+    shell: "python clean_abyz.py {input} {params} {output}"
 
 
 ###############################################################################
