@@ -85,3 +85,21 @@ rule clean_abyz:
     input: ABYZ_DATA_FILE
     output: ABYZ_CLEANED_DATA_FILE
     shell: "python clean_abyz.py {input} {output}"
+
+
+###############################################################################
+# Aggregation
+CLEANED_COMBINED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "cleaned_combined.csv")
+
+rule combine_cleaned_data:
+    input:
+        NEWSGUARD_CLEANED_DATA_FILE,
+        MBFC_CLEANED_DATA_FILE,
+        ROBERTSON_CLEANED_DOMAINS_FILE,
+        HOHENBERG_CLEANED_DATA_FILE,
+        LE_QUERE_CLEANED_DATA_FILE,
+        FISHER_CLEANED_DATA_FILE,
+        HORNE_CLEANED_DATA_FILE,
+        ABYZ_CLEANED_DATA_FILE
+    output: CLEANED_COMBINED_DATA_FILE
+    shell: "python concat_csv.py {input} {output}"
