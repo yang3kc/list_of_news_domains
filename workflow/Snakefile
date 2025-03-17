@@ -98,6 +98,7 @@ rule clean_abyz:
 ###############################################################################
 # Aggregation
 CLEANED_COMBINED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "cleaned_combined.csv")
+COMBINED_UNIQUE_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "combined_unique.csv")
 
 rule combine_cleaned_data:
     input:
@@ -111,3 +112,9 @@ rule combine_cleaned_data:
         ABYZ_CLEANED_DATA_FILE
     output: CLEANED_COMBINED_DATA_FILE
     shell: "python concat_csv.py {input} {output}"
+
+
+rule gen_unique_data:
+    input: CLEANED_COMBINED_DATA_FILE
+    output: COMBINED_UNIQUE_DATA_FILE
+    shell: "python gen_unique_data.py {input} {output}"
