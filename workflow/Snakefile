@@ -44,8 +44,9 @@ ROBERTSON_CLEANED_DOMAINS_FILE = os.path.join(
 
 rule clean_robertson:
     input: ROBERTSON_DOMAINS_FILE
+    params: "robertson"
     output: ROBERTSON_CLEANED_DOMAINS_FILE
-    shell: "python clean_robertson.py {input} {output}"
+    shell: "python clean_robertson.py {input} {params} {output}"
 
 HOHENBERG_DATA_FILE = os.path.join(RAW_DATA_ROOT, "hohenberg.csv")
 HOHENBERG_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "hohenberg_cleaned.csv")
