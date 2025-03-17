@@ -25,6 +25,7 @@ rule clean_newsguard:
     output: NEWSGUARD_CLEANED_DATA_FILE
     shell: "python clean_newsguard.py {input} {output}"
 
+
 MBFC_DATA_FILE = os.path.join(RAW_DATA_ROOT, "mbfc_ratings.csv")
 MBFC_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "mbfc_cleaned.csv")
 
@@ -32,3 +33,14 @@ rule clean_mbfc:
     input: MBFC_DATA_FILE
     output: MBFC_CLEANED_DATA_FILE
     shell: "python clean_mbfc.py {input} {output}"
+
+
+ROBERTSON_DOMAINS_FILE = os.path.join(RAW_DATA_ROOT, "robertson_domains.tsv")
+ROBERTSON_CLEANED_DOMAINS_FILE = os.path.join(
+    INTERMEDIATE_DATA_ROOT, "robertson_cleaned.csv"
+)
+
+rule clean_robertson:
+    input: ROBERTSON_DOMAINS_FILE
+    output: ROBERTSON_CLEANED_DOMAINS_FILE
+    shell: "python clean_robertson.py {input} {output}"
