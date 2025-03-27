@@ -1,6 +1,6 @@
 # Introduction
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15073919.svg)](https://doi.org/10.5281/zenodo.15073919)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15073918.svg)](https://doi.org/10.5281/zenodo.15073918)
 
 The goal of this project is to compile a list of news domains from existing lists for research purposes.
 
@@ -27,8 +27,8 @@ See [workflow](workflow) for details of processing steps.
   month        = mar,
   year         = {2025},
   publisher    = {Zenodo},
-  version      = {v1.0},
-  doi          = {10.5281/zenodo.15073919},
-  url          = {https://doi.org/10.5281/zenodo.15073919},
+  version      = {v1.1},
+  doi          = {10.5281/zenodo.15073918},
+  url          = {https://doi.org/10.5281/zenodo.15073918},
 }
 ```
