@@ -72,6 +72,14 @@ Horne et al. (2022) shared a list of local news outlets at https://dataverse.har
 abyznewslinks.com provides a list of newspapers and news media in the U.S., classifying them as either local or national.
 We obtained the data from its website.
 
+## Media Cloud
+
+- [media_cloud_us_sources_20250326.parquet](./media_cloud_us_sources_20250326.parquet)
+
+Media Cloud tracks the news sources across the world.
+We obtained the list of news sources from the U.S.
+See their [instructions](https://github.com/mediacloud/api-tutorial-notebooks/blob/main/MC04%20-%20directory.ipynb) for how to access the data through their API.
+
 ## Exclusion list
 
 After cleaning and combining all the list above, we manually identified some domains that should not be included in the final list.
