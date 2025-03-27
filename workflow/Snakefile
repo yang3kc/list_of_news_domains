@@ -94,6 +94,14 @@ rule clean_abyz:
     output: ABYZ_CLEANED_DATA_FILE
     shell: "python clean_abyz.py {input} {params} {output}"
 
+MEDIA_CLOUD_DATA_FILE = os.path.join(RAW_DATA_ROOT, "media_cloud_us_sources_20250326.parquet")
+MEDIA_CLOUD_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "media_cloud_cleaned.csv")
+
+rule clean_media_cloud:
+    input: MEDIA_CLOUD_DATA_FILE
+    params: "media_cloud"
+    output: MEDIA_CLOUD_CLEANED_DATA_FILE
+    shell: "python clean_media_cloud.py {input} {params} {output}"
 
 ###############################################################################
 # Aggregation
@@ -102,14 +110,15 @@ COMBINED_UNIQUE_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "combined_uniqu
 
 rule combine_cleaned_data:
     input:
-        NEWSGUARD_CLEANED_DATA_FILE,
-        MBFC_CLEANED_DATA_FILE,
-        ROBERTSON_CLEANED_DOMAINS_FILE,
-        HOHENBERG_CLEANED_DATA_FILE,
-        LE_QUERE_CLEANED_DATA_FILE,
-        FISHER_CLEANED_DATA_FILE,
-        HORNE_CLEANED_DATA_FILE,
-        ABYZ_CLEANED_DATA_FILE
+        # NEWSGUARD_CLEANED_DATA_FILE,
+        # MBFC_CLEANED_DATA_FILE,
+        # ROBERTSON_CLEANED_DOMAINS_FILE,
+        # HOHENBERG_CLEANED_DATA_FILE,
+        # LE_QUERE_CLEANED_DATA_FILE,
+        # FISHER_CLEANED_DATA_FILE,
+        # HORNE_CLEANED_DATA_FILE,
+        # ABYZ_CLEANED_DATA_FILE,
+        MEDIA_CLOUD_CLEANED_DATA_FILE
     output: CLEANED_COMBINED_DATA_FILE
     shell: "python concat_csv.py {input} {output}"
 
