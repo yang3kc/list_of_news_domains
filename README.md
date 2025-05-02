@@ -27,7 +27,6 @@ See [workflow](workflow) for details of processing steps.
   month        = mar,
   year         = {2025},
   publisher    = {Zenodo},
-  version      = {v1.1},
   doi          = {10.5281/zenodo.15073918},
   url          = {https://doi.org/10.5281/zenodo.15073918},
 }
