@@ -36,5 +36,8 @@ fisher_df["domain"] = fisher_df.domain.str.replace("/", "")
 fisher_df.drop_duplicates(inplace=True)
 print(f"{len(fisher_df)} rows after dropping duplicates.")
 
+# Remove the ones without a dot
+fisher_df = fisher_df[fisher_df["domain"].str.contains("\\.")]
+
 fisher_df["dataset"] = dataset
 fisher_df.to_csv(output_file, index=False)

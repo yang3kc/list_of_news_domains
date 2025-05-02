@@ -27,7 +27,10 @@ output_file = sys.argv[-1]
 horne_raw_df = pd.read_csv(input_file, usecols=["sourcedomain_id"])
 horne_domains = []
 for index, row in horne_raw_df.iterrows():
-    horne_domains.append(row["sourcedomain_id"].split("-")[1])
+    domain = row["sourcedomain_id"].split("-")[1]
+    # Remove the ones without a dot
+    if "." in domain:
+        horne_domains.append(domain)
 horne_df = pd.DataFrame(horne_domains, columns=["domain"])
 
 horne_df.dropna(inplace=True)
