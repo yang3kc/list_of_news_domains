@@ -127,7 +127,8 @@ rule combine_cleaned_data:
         FISHER_CLEANED_DATA_FILE,
         HORNE_CLEANED_DATA_FILE,
         ABYZ_CLEANED_DATA_FILE,
-        MEDIA_CLOUD_CLEANED_DATA_FILE
+        MEDIA_CLOUD_CLEANED_DATA_FILE,
+        NWU_LOCAL_NEWS_CLEANED_DATA_FILE
     output: CLEANED_COMBINED_DATA_FILE
     shell: "python concat_csv.py {input} {output}"
 
