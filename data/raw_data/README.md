@@ -80,6 +80,13 @@ Media Cloud tracks the news sources across the world.
 We obtained the list of news sources from the U.S.
 See their [instructions](https://github.com/mediacloud/api-tutorial-notebooks/blob/main/MC04%20-%20directory.ipynb) for how to access the data through their API.
 
+## Northwestern Local News
+
+- [nwu_local_news_sites.csv](./nwu_local_news_sites.csv)
+
+[Northwestern Local News Initiative](https://localnewsinitiative.northwestern.edu) provides a list of local news outlets in the U.S.
+We obtained the data by contacting the team and extracted the list of local news outlets.
+
 ## Exclusion list
 
 After cleaning and combining all the list above, we manually identified some domains that should not be included in the final list.
