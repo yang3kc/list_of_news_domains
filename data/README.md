@@ -1,9 +1,11 @@
-# Introduction
+# Data directory
 
-This folder stores the raw data and processed data for the project.
+This folder holds both the original source lists and the final compiled dataset.
 
-# File structure
+```
+data/
+├── raw_data/   # input lists and exclusion files
+└── output/     # news_domains.csv
+```
 
-- [raw_data](./raw_data): The raw data for the project.
-- [intermediate_files](./intermediate_files): The intermediate files for the project.
-- [output](./output): The output data for the project.
+Each data source is documented in [raw_data/README.md](raw_data/README.md). The `output` folder contains the single file `news_domains.csv`, which is produced by the Snakemake pipeline.
