@@ -103,6 +103,15 @@ rule clean_media_cloud:
     output: MEDIA_CLOUD_CLEANED_DATA_FILE
     shell: "python clean_media_cloud.py {input} {params} {output}"
 
+NWU_LOCAL_NEWS_LIST = os.path.join(RAW_DATA_ROOT, "nwu_local_news_sites.csv")
+NWU_LOCAL_NEWS_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "nwu_local_news_cleaned.csv")
+
+rule clean_nwu_local_news:
+    input: NWU_LOCAL_NEWS_LIST
+    params: "northwestern_local_news"
+    output: NWU_LOCAL_NEWS_CLEANED_DATA_FILE
+    shell: "python clean_nwu_local_news.py {input} {params} {output}"
+
 ###############################################################################
 # Aggregation
 CLEANED_COMBINED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "cleaned_combined.csv")
