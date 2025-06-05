@@ -87,6 +87,14 @@ See their [instructions](https://github.com/mediacloud/api-tutorial-notebooks/bl
 [Northwestern Local News Initiative](https://localnewsinitiative.northwestern.edu) provides a list of local news outlets in the U.S.
 We obtained the data by contacting the team and extracted the list of local news outlets.
 
+## Ethnic Media
+
+- [ethnic_media_list.csv](./ethnic_media_list.csv)
+
+The list contains ethnic media with their target community.
+The list was compiled by https://github.com/yang3kc/list_of_ethnic_media.
+Currently, its sources include the Northwestern Local News Initiative and the lists provided by the [CUNY Center for Community Media](https://www.journalism.cuny.edu/centers/center-community-media).
+
 ## Exclusion list
 
 After cleaning and combining all the list above, we manually identified some domains that should not be included in the final list.
