@@ -112,6 +112,16 @@ rule clean_nwu_local_news:
     output: NWU_LOCAL_NEWS_CLEANED_DATA_FILE
     shell: "python clean_nwu_local_news.py {input} {params} {output}"
 
+ETHNIC_MEDIA_LIST = os.path.join(RAW_DATA_ROOT, "ethnic_media_list.csv")
+ETHNIC_MEDIA_CLEANED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "ethnic_media_cleaned.csv")
+
+rule clean_ethnic_media:
+    input: ETHNIC_MEDIA_LIST
+    params: "ethnic_media"
+    output: ETHNIC_MEDIA_CLEANED_DATA_FILE
+    shell: "python clean_ethnic_media.py {input} {params} {output}"
+
+
 ###############################################################################
 # Aggregation
 CLEANED_COMBINED_DATA_FILE = os.path.join(INTERMEDIATE_DATA_ROOT, "cleaned_combined.csv")
@@ -128,7 +138,8 @@ rule combine_cleaned_data:
         HORNE_CLEANED_DATA_FILE,
         ABYZ_CLEANED_DATA_FILE,
         MEDIA_CLOUD_CLEANED_DATA_FILE,
-        NWU_LOCAL_NEWS_CLEANED_DATA_FILE
+        NWU_LOCAL_NEWS_CLEANED_DATA_FILE,
+        ETHNIC_MEDIA_CLEANED_DATA_FILE
     output: CLEANED_COMBINED_DATA_FILE
     shell: "python concat_csv.py {input} {output}"
 
