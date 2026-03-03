@@ -123,3 +123,9 @@ They are:
 - website builders (e.g., wordpress.com, wix.com)
 - blogs (e.g., medium.com)
 - etc.
+
+### Think tanks and policy organizations
+
+The dataset intentionally retains think tanks, policy organizations, and advocacy groups (e.g., `heritage.org`, `brookings.edu`, `cato.org`, `aclu.org`).
+Although these are not traditional news outlets, they regularly publish analysis, commentary, and reporting that functions as news content, especially in political contexts.
+Many of these organizations have strong political leanings, making them relevant for media bias and news consumption analysis.
