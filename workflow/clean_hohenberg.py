@@ -19,6 +19,7 @@ python clean_hohenberg.py data/raw/hohenberg.csv hohenberg data/processed/hohenb
 
 import pandas as pd
 import sys
+import utils
 
 input_file = sys.argv[1]
 dataset = sys.argv[2]
@@ -30,7 +31,7 @@ print(f"Load {hohenberg_df.shape[0]} rows from {input_file}.")
 hohenberg_df = hohenberg_df[hohenberg_df.domain.notna()][["domain"]]
 print(f"{len(hohenberg_df)} rows after dropping missing values.")
 
-hohenberg_df["domain"] = hohenberg_df.domain.str.lower()
+hohenberg_df["domain"] = hohenberg_df.domain.apply(utils.normalize_domain)
 
 hohenberg_df = hohenberg_df[~hohenberg_df["domain"].str.contains("/")][["domain"]]
 print(f"{len(hohenberg_df)} rows after removing URLs with paths.")

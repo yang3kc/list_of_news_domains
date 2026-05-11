@@ -23,6 +23,7 @@ output_file = sys.argv[-1]
 
 df = pd.read_csv(input_file, usecols=["domain"])
 
+df["domain"] = df["domain"].str.lower()
 df.drop_duplicates(subset=["domain"], inplace=True)
 
 df.to_csv(output_file, index=False)
