@@ -26,7 +26,8 @@ output_file = sys.argv[-1]
 nwu_local_news_df = pd.read_csv(input_file, usecols=["domain"])
 print(f"Load {nwu_local_news_df.shape[0]} rows from {input_file}.")
 
+nwu_local_news_df["domain"] = nwu_local_news_df.domain.str.lower()
+
 nwu_local_news_df["dataset"] = dataset
 
-# The dataset has been cleaned already, so no need to further clean it
 nwu_local_news_df.to_csv(output_file, index=False)
