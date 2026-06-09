@@ -4,6 +4,12 @@
 
 This repository compiles a canonical list of U.S. news domains from a variety of existing datasets. Researchers can use the list for studies on news consumption, media bias and related topics.
 
+## Local news
+
+This list focuses on general U.S. news domains and does not label local outlets.
+For a dedicated list of U.S. local news outlets, see the companion project
+[yang3kc/list_of_local_news_outlets](https://github.com/yang3kc/list_of_local_news_outlets).
+
 ## Quick start
 
 The latest version of the list is available on the [releases page](https://github.com/yang3kc/list_of_news_domains/releases) or directly in [data/output/news_domains.csv](data/output/news_domains.csv).
