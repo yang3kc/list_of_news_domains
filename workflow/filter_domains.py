@@ -2,6 +2,8 @@ import sys
 
 import pandas as pd
 
+import utils
+
 FULL_DOMAIN_FILE = sys.argv[1]
 DOMAIN_TO_EXCLUDE_FILE = sys.argv[2]
 SUFFIX_BASED_DOMAINS_TO_EXCLUDE = sys.argv[3]
@@ -20,9 +22,14 @@ print(
     f"Load {SUFFIX_BASED_DOMAINS_TO_EXCLUDE} with {len(suffix_based_domains_to_exclude_df)} rows"
 )
 
-domain_to_exclude_set = set(domain_to_exclude_df["domain"]) | set(
-    suffix_based_domains_to_exclude_df["domain"]
-)
+# Canonicalize exclusion keys the same way output domains are canonicalized in
+# gen_unique_data.py, so www-prefixed exclusion entries (e.g. "www.dobbins.afrc.af.mil")
+# still match their canonical output form ("dobbins.afrc.af.mil").
+domain_to_exclude_set = {
+    utils.canonicalize_domain(d)
+    for d in set(domain_to_exclude_df["domain"])
+    | set(suffix_based_domains_to_exclude_df["domain"])
+}
 print(f"Total number of domains to exclude: {len(domain_to_exclude_set)}")
 
 full_domain_df = full_domain_df[~full_domain_df["domain"].isin(domain_to_exclude_set)]
