@@ -18,12 +18,15 @@ python gen_unique_data.py data/processed/cleaned_combined.csv data/processed/com
 import pandas as pd
 import sys
 
+import utils
+
 input_file = sys.argv[1]
 output_file = sys.argv[-1]
 
 df = pd.read_csv(input_file, usecols=["domain"])
 
-df["domain"] = df["domain"].str.lower()
+df["domain"] = df["domain"].map(utils.canonicalize_domain)
+df = df[df["domain"].str.contains(r"\.", na=False)]   # drop empty/no-dot rows (the "" row)
 df.drop_duplicates(subset=["domain"], inplace=True)
 
 df.to_csv(output_file, index=False)

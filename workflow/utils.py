@@ -20,6 +20,25 @@ def normalize_domain(raw):
     return raw
 
 
+COSMETIC_PREFIX = re.compile(r"^(?:www\d*|m|amp|beta|mobile|qa-www)\.")
+
+
+def canonicalize_domain(raw):
+    """Canonicalize a bare domain: lowercase, drop stray-space prefixes,
+    leading dots, and cosmetic host labels (www, www2, m, amp, beta, qa-www).
+    Does NOT reduce to eTLD+1 — subdomain granularity is preserved.
+    Returns '' for empty/invalid input."""
+    if not isinstance(raw, str):
+        return ""
+    raw = raw.strip().lower()
+    raw = re.split(r"\s+", raw)[-1]      # "com wsavcw.com" -> "wsavcw.com"
+    raw = raw.lstrip(".")                # ".ljworld.com"   -> "ljworld.com"
+    # strip cosmetic prefix labels only while a registrable tail (with a dot) remains
+    while COSMETIC_PREFIX.match(raw) and "." in COSMETIC_PREFIX.sub("", raw):
+        raw = COSMETIC_PREFIX.sub("", raw)
+    return raw
+
+
 def has_path(url):
     """
     Check if the URL has a path component.
